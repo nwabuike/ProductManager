@@ -44,21 +44,23 @@ $products = $productController->index();
                         </tr>
                     </thead>
                     <?php
+                    if($products){
                     foreach ($products as $row) {
+                        
                         ?>
                         <tbody>
                             <tr>
-                                <th scope="col"><?= $row[0]; ?></th>
-                                <td><?php echo $row[1] ; ?></td>
-                                <td><?php echo $row[2]; ?></td>
-                                <td><?php echo $row[3]; ?></td>
-                                <td><?php echo $row[4]; ?></td>
-                                <td><a href="edit.php?id=<?php echo $row[0]; ?>" class="btn btn-success"><i class="icon-edit2"></i>Edit</a></td>
-                                <td><a href="product.php?id=<?php echo $row[0]; ?>" class="btn btn-warning"><i class="icon-pageview"></i> View</a></td>
-                                <td><a href="routes/web.php?del=<?php echo $row[0]; ?> "   class="btn btn-danger"><i class="icon-delete_forever"></i> Delete</a></td>
+                                <th scope="col"><?= $row['id']; ?></th>
+                                <td><?php echo $row['name'] ; ?></td>
+                                <td><?php echo $row['description']; ?></td>
+                                <td><?php echo $row['quantity']; ?></td>
+                                <td><?php echo $row['unit_price']; ?></td>
+                                <td><a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-success"><i class="icon-edit2"></i>Edit</a></td>
+                                <td><a href="product.php?id=<?php echo $row['id']; ?>" class="btn btn-warning"><i class="icon-pageview"></i> View</a></td>
+                                <td><a href="routes/web.php?action=delete&id=<?php echo $row['id']; ?> "   class="btn btn-danger"><i class="icon-delete_forever"></i> Delete</a></td>
                             </tr>
                         </tbody>
-                    <?php } ?>
+                    <?php }} ?>
                 </table>
             </div>
         </div>

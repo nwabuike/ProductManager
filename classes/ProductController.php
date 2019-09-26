@@ -3,19 +3,19 @@ require_once 'DatabaseConnection.php';
 
 class ProductController
 {
+
     private $databaseConnection;
 
-
-    function __construct()
+    /* Get database access */
+    public function __construct()
     {
         $this->databaseConnection = new DatabaseConnection();
     }
-
     public function index()
     {
         $sql = "SELECT * FROM products";
         $result = $this->databaseConnection->query($sql);
-        return mysqli_fetch_all($result);
+        return $result->fetchAll();
     }
 
     public function show($id = null)
@@ -25,12 +25,8 @@ class ProductController
             $sql .= " WHERE id=$id";
         }
         $result = $this->databaseConnection->query($sql);
-        return mysqli_fetch_assoc($result);
+        return $result->fetch(PDO:: FETCH_ASSOC);
     }
-
-    public function create($data)
-    { }
-
     public function store($data)
     {
         $name = $data['name'];
@@ -48,7 +44,7 @@ class ProductController
             $sql .= " WHERE id=$id";
         }
         $result = $this->databaseConnection->query($sql);
-        return mysqli_fetch_assoc($result);
+        return $result->fetch(PDO::FETCH_ASSOC);
     }
     public function update($data)
     {

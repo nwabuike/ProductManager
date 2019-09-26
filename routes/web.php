@@ -13,8 +13,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create') {
     $productController = new ProductController();
     $response = $productController->store($data);
 
-    if ($response === true) {
-        var_dump($response);
+    if ($response) {
         header('location: ../index.php');
     }
     return 'ERROR: Could not able to execute';
@@ -31,21 +30,19 @@ if (isset($_POST['action']) && $_POST['action'] == 'update') {
     $productController = new ProductController();
     $response = $productController->update($data);
 
-    if ($response === true) {
-        var_dump($response);
+    if ($response) {
+        
         header('location: ../index.php');
     }
     return 'ERROR: Could not able to execute';
 }
-
 if (isset($_GET['action']) && $_GET['action'] == 'delete') {
     $id = $_GET['id'];
     $productController = new ProductController();
     $data = $productController->delete($id);
-    if($data){
+    if ($data) {
         header('location: ../index.php');
-    }else{
+    } else {
         echo "Failed to Delete Record";
     }
-
 }
